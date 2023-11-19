@@ -4,11 +4,11 @@ import './App.css';
 function App() {
   const [file, setFile] = useState(null);
 
-  const selectedHandler = evt => {
+  const handleSelect = evt => {
     setFile(evt.target.files[0]);
   };
 
-  const submitHandler = () => {
+  const handleSubmit = () => {
     if (!file) {
       alert('You must select a file');
       return;
@@ -17,12 +17,12 @@ function App() {
     const formdata = new FormData();
     formdata.append('pdf', file);
 
-    fetch('http://localhost:3005/uploads', {
+    fetch('http://localhost:3005/api/uploads', {
       method: 'POST',
       body: formdata,
-    })
-      .then(res => console.log(res))
-      .catch(err => console.error(err));
+    }).catch(err => console.error(err));
+
+    document.getElementById('fileInput').value = null;
 
     setFile(null);
   };
@@ -30,13 +30,14 @@ function App() {
   return (
     <div className="container">
       <input
+        id="fileInput"
         className="input"
         name="src-file"
         type="file"
         aria-label="File"
-        onChange={selectedHandler}
+        onChange={handleSelect}
       />
-      <button className="button" onClick={submitHandler}>
+      <button className="button" onClick={handleSubmit}>
         Upload
       </button>
     </div>
