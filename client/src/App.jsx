@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
 function App() {
@@ -9,7 +11,7 @@ function App() {
     setFile(evt.target.files[0]);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!file) {
       alert('You must select a file');
       return;
@@ -18,12 +20,13 @@ function App() {
     const formdata = new FormData();
     formdata.append('pdf', file);
 
-    fetch('http://localhost:3005/api/uploads', {
+    await fetch('http://localhost:3005/api/uploads', {
       method: 'POST',
       body: formdata,
     }).catch(err => console.error(err));
 
     document.getElementById('fileInput').value = null;
+    toast.success('File uploaded successfully');
 
     setFile(null);
   };
@@ -56,6 +59,8 @@ function App() {
           rows="10"
         ></textarea>
       </div>
+
+      <ToastContainer />
     </>
   );
 }
