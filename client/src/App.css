@@ -25,3 +25,11 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.pdfText {
+  width: 90%;
+  min-height: 40em;
+  margin: 2em auto;
+  border: solid 1px #f0f0f0;
+  border-radius: 5px;
+}

@@ -3,6 +3,7 @@ import './App.css';
 
 function App() {
   const [file, setFile] = useState(null);
+  const [pdfText, setPdfText] = useState('');
 
   const handleSelect = evt => {
     setFile(evt.target.files[0]);
@@ -27,20 +28,35 @@ function App() {
     setFile(null);
   };
 
+  const handleChange = () => {};
+
   return (
-    <div className="container">
-      <input
-        id="fileInput"
-        className="input"
-        name="src-file"
-        type="file"
-        aria-label="File"
-        onChange={handleSelect}
-      />
-      <button className="button" onClick={handleSubmit}>
-        Upload
-      </button>
-    </div>
+    <>
+      <div className="container">
+        <input
+          id="fileInput"
+          className="input"
+          name="src-file"
+          type="file"
+          aria-label="File"
+          onChange={handleSelect}
+        />
+        <button className="button" onClick={handleSubmit}>
+          Upload
+        </button>
+      </div>
+
+      <div className="text">
+        <textarea
+          name="pdfText"
+          value={pdfText}
+          onChange={handleChange}
+          className="pdfText"
+          cols="30"
+          rows="10"
+        ></textarea>
+      </div>
+    </>
   );
 }
 
