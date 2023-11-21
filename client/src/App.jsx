@@ -7,6 +7,7 @@ function App() {
   const [file, setFile] = useState(null);
   const [pdfText, setPdfText] = useState('');
 
+  // Handler for file selection
   const handleSelect = evt => {
     setFile(evt.target.files[0]);
   };
@@ -17,18 +18,30 @@ function App() {
       return;
     }
 
-    const formdata = new FormData();
-    formdata.append('pdf', file);
+    try {
+      const formdata = new FormData();
+      formdata.append('pdf', file);
 
-    await fetch('http://localhost:3005/api/uploads', {
-      method: 'POST',
-      body: formdata,
-    }).catch(err => console.error(err));
+      const response = await fetch('http://localhost:3005/api/uploads', {
+        method: 'POST',
+        body: formdata,
+      });
 
-    document.getElementById('fileInput').value = null;
-    toast.success('File uploaded successfully');
+      if (!response.ok) {
+        throw new Error('File upload failed');
+      }
 
-    setFile(null);
+      const textResponse = await response.text();
+      setPdfText(textResponse);
+
+      toast.success('File uploaded successfully');
+
+      // Clear file input and reset state
+      document.getElementById('fileInput').value = null;
+      setFile(null);
+    } catch (error) {
+      toast.error(error);
+    }
   };
 
   const handleChange = () => {};
@@ -57,7 +70,9 @@ function App() {
           className="pdfText"
           cols="30"
           rows="10"
-        ></textarea>
+        >
+          {pdfText}
+        </textarea>
       </div>
 
       <ToastContainer />
