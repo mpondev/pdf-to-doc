@@ -8,6 +8,9 @@ app.use(express.json());
 app.use(express.static(`${__dirname}/public`));
 app.use(cors());
 
+// Serve up production assets
+app.use(express.static('../client/dist'));
+
 app.use(routes);
 
 app.get('/api', (req, res) => {

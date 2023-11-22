@@ -1,7 +1,9 @@
 {
-  "name": "client",
+  "name": "pdf-to-doc",
+  "homepage": "https://pdf-to-doc.mpondev.com",
   "private": true,
   "version": "1.0.0",
+  "description": "App for extracting text from pdf",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "pdf-to-doc-server",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -18,5 +18,8 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
