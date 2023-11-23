@@ -1,10 +1,17 @@
-.header {
+@import './index.css';
+
+p {
+  text-align: center;
+  height: 2em;
+}
+
+.head {
   position: relative;
   width: 90%;
   height: 4em;
   margin: 2em auto;
   padding: 0 1em;
-  border: solid 1px #f0f0f0;
+  border: solid 1.5px rgba(255, 0, 0, 0.5);
   border-radius: 5px;
   display: flex;
   font-size: 1.2em;
@@ -21,8 +28,9 @@
   width: 8em;
   margin: auto;
   padding: 0.25em 0.75em;
-  background-color: #f0f0f0;
-  color: #181818;
+  /* background-color: #f0f0f0; */
+  color: var(--color-prim-orange);
+  border: solid 1px var(--color-prim-orange);
   border-radius: 5px;
   cursor: pointer;
 }
@@ -32,6 +40,6 @@
   min-height: 40em;
   margin: 2em auto;
   padding: 1em 3em;
-  border: solid 1px #f0f0f0;
+  border: solid 1.5px rgba(0, 0, 255, 0.5);
   border-radius: 5px;
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
+import Header from './components/Header';
 
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
@@ -55,9 +56,17 @@ function App() {
     }
   };
 
+  const handleReset = () => {
+    setPdfText('');
+  };
+
   return (
     <>
-      <div className="header">
+      <Header />
+
+      <p>Convert PDF to text in an easy and safe way</p>
+
+      <div className="head">
         <input
           type="file"
           accept="application/pdf" // file types the input should accept
@@ -83,6 +92,10 @@ function App() {
           rows="10"
         ></textarea>
       </div>
+
+      <button className="button" onClick={handleReset}>
+        Reset
+      </button>
 
       <ToastContainer position="top-center" autoClose={2000} />
     </>
