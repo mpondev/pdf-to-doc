@@ -46,6 +46,12 @@ router.post('/api/uploads', upload.single('pdf'), async (req, res) => {
     const data = await pdf(filePath);
 
     res.send(data.text);
+
+    // Delete the uploaded file once its text has been extracted
+    fs.unlink(filePath, err => {
+      if (err) return console.log(err);
+      console.log('File deleted successfully');
+    });
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: error.message });
